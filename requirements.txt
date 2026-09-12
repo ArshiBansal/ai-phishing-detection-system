@@ -1,0 +1,39 @@
+# Core
+numpy>=1.26.0
+pandas>=2.1.0
+scikit-learn>=1.4.0
+tqdm>=4.66.0
+pyyaml>=6.0.1
+joblib>=1.3.0
+
+# Dataset (Hugging Face)
+datasets>=2.19.0
+huggingface_hub>=0.23.0
+
+# Classical ML
+xgboost>=2.0.0
+lightgbm>=4.3.0
+
+# NLP & Deep Learning
+torch>=2.2.0
+transformers>=4.40.0
+accelerate>=0.30.0
+sentencepiece>=0.2.0
+
+# HTML Parsing
+beautifulsoup4>=4.12.0
+lxml>=5.1.0
+html5lib>=1.1
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.20.0
+
+# Optional but recommended (for demo)
+streamlit>=1.32.0
+# gradio>=4.26.0          # Uncomment if you prefer Gradio over Streamlit
+
+# Optional (for better performance / utilities)
+optuna>=3.6.0             # For hyperparameter tuning
+rich>=13.7.0              # Beautiful terminal output
