@@ -6,7 +6,7 @@ tqdm>=4.66.0
 pyyaml>=6.0.1
 joblib>=1.3.0
 
-# Dataset (Hugging Face)
+# Dataset (Hugging Face) - streaming supported
 datasets>=2.19.0
 huggingface_hub>=0.23.0
 
@@ -19,21 +19,23 @@ torch>=2.2.0
 transformers>=4.40.0
 accelerate>=0.30.0
 sentencepiece>=0.2.0
+safetensors>=0.4.0
+evaluate>=0.4.0                # Official metrics (F1, precision, recall, etc.)
 
 # HTML Parsing
 beautifulsoup4>=4.12.0
 lxml>=5.1.0
 html5lib>=1.1
 
-# Visualization
+# Visualization (for notebooks)
 matplotlib>=3.8.0
 seaborn>=0.13.0
 plotly>=5.20.0
 
-# Optional but recommended (for demo)
-streamlit>=1.32.0
-# gradio>=4.26.0          # Uncomment if you prefer Gradio over Streamlit
+# Application (non-Streamlit)
+gradio>=4.26.0                 # Recommended interactive demo app
 
-# Optional (for better performance / utilities)
-optuna>=3.6.0             # For hyperparameter tuning
-rich>=13.7.0              # Beautiful terminal output
+# Optional but recommended
+optuna>=3.6.0                  # Hyperparameter tuning
+rich>=13.7.0                   # Beautiful terminal logs
+ipykernel>=6.29.0              # For running notebooks cleanly
