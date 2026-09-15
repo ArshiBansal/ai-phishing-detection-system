@@ -20,22 +20,23 @@ transformers>=4.40.0
 accelerate>=0.30.0
 sentencepiece>=0.2.0
 safetensors>=0.4.0
-evaluate>=0.4.0                # Official metrics (F1, precision, recall, etc.)
+evaluate>=0.4.0
 
-# HTML Parsing
+# HTML Parsing & URL features
 beautifulsoup4>=4.12.0
 lxml>=5.1.0
 html5lib>=1.1
+tldextract>=5.1.0          
 
 # Visualization (for notebooks)
 matplotlib>=3.8.0
 seaborn>=0.13.0
 plotly>=5.20.0
 
-# Application (non-Streamlit)
-gradio>=4.26.0                 # Recommended interactive demo app
+# Application
+gradio>=4.26.0
 
 # Optional but recommended
-optuna>=3.6.0                  # Hyperparameter tuning
-rich>=13.7.0                   # Beautiful terminal logs
-ipykernel>=6.29.0              # For running notebooks cleanly
+optuna>=3.6.0
+rich>=13.7.0
+ipykernel>=6.29.0
