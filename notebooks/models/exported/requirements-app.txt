@@ -1,0 +1,17 @@
+# Core
+torch
+transformers
+scikit-learn
+xgboost
+joblib
+pandas
+numpy
+pyarrow
+
+# App
+gradio>=4.0.0
+# or fastapi uvicorn for FastAPI version
+
+# Optional
+beautifulsoup4
+lxml
