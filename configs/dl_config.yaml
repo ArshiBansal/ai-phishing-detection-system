@@ -1,0 +1,78 @@
+# Deep Learning (Transformer) config for PhreshPhish
+# Focus: robust low false-positive phishing webpage classification
+
+dataset:
+  name: "phreshphish/phreshphish"
+  train_split: "train"
+  test_split: "test"
+  streaming: true                    # mandatory – no full dataset download
+  max_train_samples: 120000          # practical limit for fine-tuning
+  max_eval_samples: 25000
+  seed: 42
+  text_fields:
+    - url
+    - html_text                       # cleaned visible text extracted from HTML
+  max_seq_length: 512
+  truncation: true
+  padding: "max_length"
+
+model:
+  backbone: "distilbert-base-uncased"  # lightweight & fast; alternatives: "bert-base-uncased", "microsoft/deberta-v3-base"
+  num_labels: 2
+  dropout: 0.1
+  classifier_dropout: 0.2
+  # Optional: use mean-pooled embeddings + linear head (GTE-style)
+  use_mean_pooling: false
+
+training:
+  output_dir: "models/dl"
+  num_train_epochs: 2
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 32
+  gradient_accumulation_steps: 4      # effective batch = 64
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.06
+  lr_scheduler_type: "linear"
+  max_grad_norm: 1.0
+  fp16: true                          # mixed precision
+  dataloader_num_workers: 4
+  evaluation_strategy: "steps"
+  eval_steps: 1000
+  save_strategy: "steps"
+  save_steps: 1000
+  save_total_limit: 2
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_precision_at_recall_0.90"
+  greater_is_better: true
+  logging_steps: 100
+  report_to: "none"                   # change to "wandb" or "tensorboard" if desired
+  seed: 42
+
+loss:
+  type: "cross_entropy"
+  class_weights: [1.0, 1.4]           # mild up-weight for phishing class (helps recall without killing precision)
+  label_smoothing: 0.05
+
+evaluation:
+  metrics:
+    - average_precision
+    - precision_at_recall_0.90
+    - precision_at_recall_0.95
+    - roc_auc
+    - f1
+    - accuracy
+  primary_metric: "precision_at_recall_0.90"   # low-FP priority (matches PhreshPhish paper focus)
+  threshold_search: true
+  base_rates: [0.0005, 0.001, 0.005, 0.01, 0.05]
+
+inference:
+  max_length: 512
+  batch_size: 32
+  return_probabilities: true
+  default_threshold: 0.75             # tuned for high precision
+
+output:
+  model_dir: "models/dl"
+  metrics_dir: "outputs/dl"
+  tokenizer_dir: "models/dl/tokenizer"
