@@ -242,4 +242,3 @@ If you use this project or the PhreshPhish dataset, please cite:
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=4000&pause=1200&color=3B82F6&center=true&vCenter=true&width=600&lines=Built+for+real-world+phishing+defense;Low+FP+%E2%80%A2+High+Precision+%E2%80%A2+Production-ready" alt="Footer"/>
 </p>
-```
